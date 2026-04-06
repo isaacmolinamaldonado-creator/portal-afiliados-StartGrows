@@ -174,17 +174,17 @@ export default function App(){
     const tR=allAf.reduce((s,a)=>s+a.rs.length,0),tP=allAf.reduce((s,a)=>s+a.pg.reduce((p,x)=>p+x.m,0),0),tC=allAf.reduce((s,a)=>s+a.ca,0),tPe=allAf.reduce((s,a)=>s+a.rs.filter(r=>!r.p).length*gT(a.rs.length).com,0);
     const enRiesgo=allAf.filter(a=>{const t=gT(a.rs.length);return t.keep>0&&a.refsEsteMes<t.keep});
     return(<div style={{minHeight:"100vh",background:C.bg,color:C.tx,fontFamily:DM}}><style>{css}</style>
-      <header style={{background:C.card,padding:"0 28px",height:60,display:"flex",justifyContent:"space-between",alignItems:"center",position:"sticky",top:0,zIndex:100}}>
+      <header style={{background:C.card,padding:"0 16px",height:60,display:"flex",justifyContent:"space-between",alignItems:"center",position:"sticky",top:0,zIndex:100}}>
         <div style={{display:"flex",alignItems:"center",gap:12}}><img src={LG} alt="" style={{height:32}} onError={e=>{e.target.style.display="none"}}/><div><span style={{fontSize:16,fontWeight:800,color:C.gold,fontFamily:PF}}>War Room</span><div style={{fontSize:9,color:C.mu,letterSpacing:1.5,fontWeight:600}}>ADMIN</div></div></div>
         <button onClick={logout} className="bh" style={{padding:"8px 18px",borderRadius:10,background:C.bg3,color:C.mu,cursor:"pointer",fontSize:12,fontWeight:600,border:"none"}}>Salir</button>
       </header>
 
-      <div style={{display:"flex",gap:6,padding:"10px 28px",background:C.bg2,overflowX:"auto"}}>
+      <div style={{display:"flex",gap:6,padding:"10px 16px",background:C.bg2,overflowX:"auto"}}>
         {[["ranking","⚔️ Ranking"],["codigos","🔗 Enlaces"],["pagos","💰 Pagos"],["alertas","🔔 Alertas"],["ajustes","⚙️ Ajustes"]].map(([id,l])=>(<button key={id} onClick={()=>{setAdminTab(id);setSelAf(null)}} className="bh" style={{padding:"8px 18px",borderRadius:10,background:adminTab===id?C.gold+"15":"transparent",color:adminTab===id?C.gold:C.mu,cursor:"pointer",fontSize:12,fontWeight:700,border:"none",whiteSpace:"nowrap"}}>{l}</button>))}
       </div>
 
-      <main style={{padding:"20px 28px"}}>
-        <div className="fu" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(150px,1fr))",gap:10,marginBottom:20}}>
+      <main style={{padding:"20px 16px"}}>
+        <div className="fu" style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10,marginBottom:20}}>
           {[[allAf.length,"Afiliados",C.gold],[tR,"Referidos",C.green],[tP+"€","Pagado",C.acc],[tPe+"€","Pendiente",C.sa],[tC.toLocaleString()+"€","Capital",C.pu]].map(([v,l,c],i)=><S key={i} v={v} l={l} c={c} s/>)}
         </div>
 
@@ -261,14 +261,14 @@ export default function App(){
   /* ═══ USER ═══ */
   const tabs=[["h","🏠","Inicio"],["n","🏆","Niveles"],["r","👥","Referidos"],["p","💰","Pagos"],["i","📈","Inversión"],["f","⚙️","Perfil"]];
   return(<div style={{minHeight:"100vh",background:C.bg,color:C.tx,fontFamily:DM}}><style>{css}</style>
-    <header style={{background:C.card,padding:"0 24px",height:60,display:"flex",justifyContent:"space-between",alignItems:"center",position:"sticky",top:0,zIndex:100}}>
+    <header style={{background:C.card,padding:"0 16px",height:60,display:"flex",justifyContent:"space-between",alignItems:"center",position:"sticky",top:0,zIndex:100}}>
       <div style={{display:"flex",alignItems:"center",gap:12}}><img src={LG} alt="" style={{height:32}} onError={e=>{e.target.style.display="none"}}/><div><div style={{fontSize:15,fontWeight:800,color:C.gold,fontFamily:PF}}>Portal Afiliados</div><div style={{fontSize:10,color:C.mu,display:"flex",alignItems:"center",gap:6}}>{user.nombre} · <B tier={tier} sz="sm"/></div></div></div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}>{notifs.length>0&&<span style={{background:C.red,color:"#fff",fontSize:10,fontWeight:800,padding:"2px 8px",borderRadius:10}}>{notifs.length}</span>}<button onClick={logout} className="bh" style={{padding:"8px 18px",borderRadius:10,background:C.bg3,color:C.mu,cursor:"pointer",fontSize:12,fontWeight:600,border:"none"}}>Salir</button></div>
     </header>
     <nav style={{display:"flex",gap:0,padding:"0 16px",background:C.bg2,overflowX:"auto"}}>
       {tabs.map(([id,ic,label])=>(<button key={id} onClick={()=>setTab(id)} style={{padding:"12px 14px",border:"none",cursor:"pointer",fontSize:11,background:"transparent",color:tab===id?C.gold:C.mu,fontWeight:tab===id?800:500,borderBottom:`2px solid ${tab===id?C.gold:"transparent"}`,display:"flex",flexDirection:"column",alignItems:"center",gap:3,minWidth:52}}><span style={{fontSize:15}}>{ic}</span><span style={{fontSize:8,letterSpacing:.5}}>{label}</span></button>))}
     </nav>
-    <main style={{padding:"20px 24px"}}>
+    <main style={{padding:"20px 16px"}}>
 
       {/* Notifications banner */}
       {notifs.length>0&&tab==="h"&&<div className="fu" style={{...crd,background:C.gold+"0c",marginBottom:16}}>
@@ -282,7 +282,7 @@ export default function App(){
             <div><div style={{fontSize:10,color:C.sa,fontWeight:700,letterSpacing:2,textTransform:"uppercase"}}>Bienvenido</div><div style={{fontFamily:PF,fontSize:24,fontWeight:800,marginTop:6}}>{user.nombre}</div><div style={{display:"flex",alignItems:"center",gap:10,marginTop:10}}><B tier={tier}/><span style={{fontSize:12,color:C.mu}}>{tier.com}€/ref</span></div>{tier.keep>0&&<div style={{fontSize:10,color:C.sa,marginTop:8}}>🔄 Mínimo {tier.keep} refs/mes · <span style={{color:refsEsteMes>=tier.keep?C.green:C.red,fontWeight:700}}>{refsEsteMes}/{tier.keep} {refsEsteMes>=tier.keep?"✅":"⚠️"}</span></div>}</div>
             <div style={{textAlign:"center",background:C.bg,borderRadius:16,padding:"14px 26px"}}><div style={{fontSize:9,color:C.mu,textTransform:"uppercase",letterSpacing:1.5}}>Pago en</div><div style={{fontSize:32,fontWeight:800,color:C.gold,fontFamily:PF,lineHeight:1,marginTop:4}}>{diasPago}</div><div style={{fontSize:9,color:C.mu}}>días</div></div>
           </div></div>
-        <div className="fu s1" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(120px,1fr))",gap:10,marginBottom:14}}><S v={user.rs.length} l="Referidos" c={C.gold} s/><S v={totalGanado+"€"} l="Ganado" c={C.green} s/><S v={pendiente+"€"} l="Pendiente" c={C.sa} s/><S v={user.ca.toLocaleString()+"€"} l="Capital" c={C.pu} s/></div>
+        <div className="fu s1" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:14}}><S v={user.rs.length} l="Referidos" c={C.gold} s/><S v={totalGanado+"€"} l="Ganado" c={C.green} s/><S v={pendiente+"€"} l="Pendiente" c={C.sa} s/><S v={user.ca.toLocaleString()+"€"} l="Capital" c={C.pu} s/></div>
         <div className="fu s2" style={crd}><div style={{fontSize:14,fontWeight:800,color:C.gold,fontFamily:PF,marginBottom:8}}>🔗 Comparte y Gana {tier.com}€</div><div style={{fontSize:11,color:C.mu,marginBottom:12}}>Tu enlace envía un WhatsApp automático identificándote.</div><div style={{display:"flex",gap:8,alignItems:"center",background:C.bg2,borderRadius:12,padding:"10px 16px",marginBottom:12}}><div style={{fontSize:18,fontWeight:800,color:C.gold,letterSpacing:3,flex:1,textAlign:"center",fontFamily:PF}}>{user.codigo}</div><button onClick={()=>copy(user.codigo,"code")} className="bh" style={{padding:"8px 16px",borderRadius:10,border:"none",background:copied==="code"?C.green+"20":C.dg,color:copied==="code"?C.green:C.gold,cursor:"pointer",fontSize:12,fontWeight:700}}>{copied==="code"?"✅":"📋"}</button></div><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}><a href={waLink(user.nombre,user.codigo)} target="_blank" rel="noreferrer" className="bh" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,padding:12,borderRadius:12,background:C.wa+"15",color:C.wa,textDecoration:"none",fontSize:13,fontWeight:800}}>📱 WhatsApp</a><button onClick={()=>copy(waLink(user.nombre,user.codigo),"walink")} className="bh" style={{padding:12,borderRadius:12,background:C.bg3,color:C.sa,cursor:"pointer",fontSize:13,fontWeight:700,border:"none"}}>{copied==="walink"?"✅ Copiado":"🔗 Copiar"}</button></div></div>
         {user.rs.length>0&&<div className="fu s3" style={crd}><div style={{fontSize:13,fontWeight:700,fontFamily:PF,marginBottom:10}}>Últimos Referidos</div>{user.rs.slice(-3).reverse().map((r,i)=>(<Row key={i}><div><span style={{fontSize:12,fontWeight:600}}>{r.n}</span><span style={{fontSize:10,color:C.mu,marginLeft:8}}>{r.fecha}</span></div><div style={{display:"flex",gap:8,alignItems:"center"}}><span style={{fontSize:13,fontWeight:800,color:C.green}}>+{r.comision}€</span><span style={{fontSize:11,color:r.p?C.green:C.gold}}>{r.p?"✅":"⏳"}</span></div></Row>))}</div>}
         {nextTier&&<div className="fu s3" style={{...crd,background:nextTier.c+"08"}}><div style={{display:"flex",justifyContent:"space-between",marginBottom:10}}><span style={{fontSize:12,fontWeight:700}}>→ <span style={{color:nextTier.c}}>{nextTier.i} {nextTier.n}</span></span><span style={{fontSize:13,fontWeight:800,color:nextTier.c}}>+{nextTier.com-tier.com}€/ref</span></div><P cur={user.rs.length} tot={nextTier.min} cF={tier.c} cT={nextTier.c}/><div style={{fontSize:10,color:C.mu,marginTop:6,textAlign:"center"}}>{user.rs.length}/{nextTier.min} — faltan {nextTier.min-user.rs.length}</div></div>}
@@ -311,7 +311,7 @@ export default function App(){
 
       {tab==="i"&&(<div>
         <div className="fu" style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}><span style={{fontSize:20,fontWeight:800,fontFamily:PF}}>📈 Inversión</span><button onClick={()=>setShowModal("month")} className="bh" style={{...btnP,fontSize:12}}>+ Registrar</button></div>
-        <div className="fu s1" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(120px,1fr))",gap:10,marginBottom:14}}><S v={user.ca.toLocaleString()+"€"} l="Capital" c={C.gold} s/><S v={"+"+ganInv+"€"} l="Ganancia" c={C.green} s/><S v={rentAcum+"%"} l="Rent." c={C.pu} s/><S v={"+"+mejorMes.r+"%"} l={mejorMes.ms} c={C.sa} s/></div>
+        <div className="fu s1" style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10,marginBottom:14}}><S v={user.ca.toLocaleString()+"€"} l="Capital" c={C.gold} s/><S v={"+"+ganInv+"€"} l="Ganancia" c={C.green} s/><S v={rentAcum+"%"} l="Rent." c={C.pu} s/><S v={"+"+mejorMes.r+"%"} l={mejorMes.ms} c={C.sa} s/></div>
         {rentData.length>0&&<div><div className="fu s2"><CapChart data={rentData}/></div><div className="fu s3" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}><RChart data={rentData}/><div style={crd}><div style={{fontSize:12,fontWeight:700,fontFamily:PF,marginBottom:10,color:C.pu}}>📋 Historial</div>{[...rentData].reverse().map((r,i)=>(<Row key={i}><span style={{fontSize:11,fontWeight:600}}>{r.ms}</span><div style={{display:"flex",gap:10}}><span style={{fontSize:11,color:C.mu}}>{r.c.toLocaleString()}€</span><span style={{fontSize:12,fontWeight:800,color:r.r>=0?C.green:C.red}}>{r.r>=0?"+":""}{r.r}%</span></div></Row>))}</div></div></div>}
       </div>)}
 
