@@ -31,8 +31,8 @@ const TIERS = [
 
 const BONOS = [
   { refs: 3, amount: 50,  icon: "⚡", label: "Bono Plata",   color: C.blue },
-  { refs: 5, amount: 100, icon: "🔥", label: "Bono Oro",     color: C.pink },
-  { refs: 7, amount: 150, icon: "💎", label: "Bono Élite",   color: C.purple },
+  { refs: 6, amount: 100, icon: "🔥", label: "Bono Oro",     color: C.pink },
+  { refs: 10, amount: 150, icon: "💎", label: "Bono Élite",   color: C.purple },
 ];
 
 const getTier = (totalRefs) => TIERS.find(t => totalRefs >= t.min && totalRefs <= t.max) || TIERS[0];
